@@ -4,6 +4,7 @@
 
 聚类算法试图将数据集中的样本划分为若干个通常是不相交的子集，每个子集称为一个“簇”(cluster)，通过这样的划分，每个簇可能对应于一些潜在的概念或类别。
 <h3>K_Means</h3>
+
 **介绍**
 
 kmeans算法又名k均值算法。其算法思想大致为：先从样本集中随机选取 k个样本作为簇中心，并计算所有样本与这 k 个簇中心的距离，对于每一个样本，将其划分到与其距离最近的簇中心所在的簇中，对于新的簇计算各个簇的新的簇中心。
@@ -79,5 +80,14 @@ k 的选择一般是按照实际需求进行决定，或在实现算法时直�
 
 **简单示例**
 
+> #1.导入：`from sklearn.cluster import KMeans`;
+
+> #2.创建模型:`kmeans_model=KMeans(n_clusters= n_clusters,max_iter= max_iter, init = 'random', random_state = 100)`
+
+> #3.训练：`km_fit = kmeans_model.fit(data_in)`
+
+> #4.预测：
+
 <h2>分类算法</h2>
+
 <h2>回归算法</h2>
