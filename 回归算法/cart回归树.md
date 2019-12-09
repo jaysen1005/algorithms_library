@@ -2,53 +2,65 @@
 
 <h3>介绍</h3>
 
-　　lasso算法是最小绝对值收敛和选择算子、套索算法。该方法是一种压缩估计。它通过构造一个罚函数得到一个较为精炼的模型，使得它压缩一些系数，同时设定一些系数为零。因此保留了子集收缩的优点，是一种处理具有复共线性数据的有偏估计。
+　　CART分类与回归树本质上是一样的，构建过程都是逐步分割特征空间，预测过程都是从根节点开始一层一层的判断直到叶节点给出预测结果。只不过分类树给出离散值，而回归树给出连续值(通常是叶节点包含样本的均值），另外分类树基于Gini指数选取分割点，而回归树基于平方误差选取分割点。
 
 <h3>理论知识</h3>
 
-1.岭回归算法原理
+1.基本原理
 
-　　Lasso 的基本思想是在回归系数的绝对值之和小于一个常数的约束条件下，使残差平方和最小化，从而能够产生某些严格等于0 的回归系数，得到可以解释的模型。
+　　CART假设决策树是二叉树，内部结点特征的取值为“是”和“否”，左分支是取值为“是”的分支，右分支是取值为“否”的分支。这样的决策树等价于递归地二分每个特征，将输入空间即特征空间划分为有限个单元，并在这些单元上确定预测的概率分布，也就是在输入给定的条件下输出的条件概率分布。
 
-2.公式
+　　CART算法由以下两步组成：
 
-　　L1正则化与L2正则化的区别在于惩罚项的不同：
+　　（1）决策树的生成：基于训练数据集生成决策树，生成的决策树要尽量大（大是为了更好地泛化）
 
-　　![image](/uploads/cc85a22c8b15869c839063c8180d2324/image.png)
+　　（2）决策树剪枝：用验证数据集对已生成的树进行剪枝并选择最优子树，这时损失函数最小作为剪枝的标准。
 
-　　L1正则化表现的是θ的绝对值，变化为上面提到的w1和w2可以表示为：
+2.回归树的生成
 
-　　![image](/uploads/b840e1cbf70d6d09e57feba74bc8e9da/image.png)
+　　 在训练数据集所在的输入空间中，递归地将每个区域划分为两个子区域并决定每个子区域上的输出值，构建二叉决策树。
+
+> （1）选择最优切分变量j与切分点s，求解![image](/uploads/d418df0f328a9e541528b4b7b746ca5d/image.png)
+
+> 遍历变量j，对固定的切分变量j扫描切分点s，选择使上式达到最小值的对(j,s)j。
+
+> （2）用选定的对(j,s)划分区域并决定响应的输出值：![image](/uploads/cfcf1db60e31185d974e7a427c63515a/image.png)
+
+> （3）继续对两个子区域条用步骤（1），（2），直至满足停止条件。
+
+> （4）将输入空间划分为M个区域R1,R2,...,RM,生成决策树：![image](/uploads/4576f9bd1c6bc57c0fe693912aed6b39/image.png)
 
 <h3>简单示例</h3>
 
-> 1.导入：`from sklearn.linear_model import Lasso`;
+> 1.导入：`from sklearn.tree import DecisionTreeRegressor`;
 
-> 2.创建模型:`model = Lasso(alpha, fit_intercept, max_iter, normalize, precompute, tol, warm_start, positive, selection)`
+> 2.创建模型:`model = DecisionTreeRegressor(criterion, splitter, max_depth, min_samples_split, min_samples_leaf, min_weight_fraction_leaf, max_features, random_state, max_leaf_nodes, min_impurity_decrease,presort)`
 
-> 3.训练：`laModel = model.fit(features, label)`
+> 3.训练：`cartModel = model.fit(X_train,y_train)`
 
-> 4.预测：`laModel.predict(x_test)` 
+> 4.预测：`y_pre = model.predict(X_test)` 
 
 <h3>参数说明</h3>
 
-> alpha：正则化系数，较大的值指定更强的正则化
+> criterion ：切分评价准则。切分时的评价准则。可选mse（均方差），friedman_mse（平均绝对误差），默认为均方差'mse'
 
-> fit_intercept:是否计算模型的截距，默认为True，计算截距
+> splitter:切分原则。可选参数:'best'(最优),'random'(随机)。
 
-> normalize:在需要计算截距时，如果值为True，则变量x在进行回归之前先进行归一化,如果需要进行标准化则normalize=False。若不计算截距，则忽略此参数
+> max_depth:树的最大深度。默认为None，表示树的深度不限。直到所有的叶子节点都是纯净的，即叶子节点
 
-> precompute :默认为True，将复制X；否则，X可能在计算中被覆盖。
+> min_samples_split: 子树划分所需最小样本数。子树继续划分所需最小样本数。int，默认为2
 
-> max_iter:共轭梯度求解器的最大迭代次数。对于sparse_cg和lsqr,默认值由scipy.sparse.linalg确定。对于sag求解器，默认值为1000。
+> min_samples_leaf:叶子节点最少样本数。int,默认为1
 
-> tol:float类型，指定计算精度
+> min_weight_fraction_leaf:叶子节点最小的样本权重和。非负数类型，默认为0.0
 
-> warm_start ：bool, 热启动,可选为 True 时, 重复使用上一次学习作为初始化，否则直接清除上次方案。
+> max_features：最大特征数。模型保留最大特征数。可输入int, float类型的数值，也可选择输入auto（原特征数）, sqrt（开方）, log2, None（原特征数）。
 
-> positive:bool, 强制正相关,可选 设为 True 时，强制使系数为正。
+> max_leaf_nodes:最大叶子节点数。正float、int类型或None。默认为None。
 
-> selection:str, 选择器,默认 ‘cyclic’若设为 ‘random’, 每次循环会随机更新参数
+> min_impurity_decrease:节点划分最小减少不纯度。非负数类型,默认为0.0。
+
+> presort:预排序。数据是否预排序，bool。False或True。
 
 <h3>适用场景</h3>
 
