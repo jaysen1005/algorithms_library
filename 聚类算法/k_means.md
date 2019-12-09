@@ -84,7 +84,7 @@
 
 > 4.预测：`y_pre = kmeans_model.predict(x_test)`
 
-**参数说明**
+<h3>参数说明</h3>
 
 > n_clusters：聚类数，模型聚类结果的类别数目，大于0的整数。 
 
