@@ -1,4 +1,4 @@
-<h2>Lasso</h2>
+<h2>CartRegressor</h2>
 
 <h3>介绍</h3>
 
