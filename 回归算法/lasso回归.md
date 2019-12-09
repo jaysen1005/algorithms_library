@@ -29,13 +29,13 @@
 
 <h3>简单示例</h3>
 
-> 1.导入：`from sklearn.linear_model import Ridge`;
+> 1.导入：`from sklearn.linear_model import Lasso`;
 
-> 2.创建模型:`ridge = Ridge(alpha=1.0, fit_intercept=True, normalize=False, copy_X=True, max_iter=None, tol=0.001, solver='auto', random_state=None)`
+> 2.创建模型:`model = Lasso(alpha, fit_intercept, max_iter, normalize, precompute, tol, warm_start, positive, selection)`
 
-> 3.训练：`ridge.fit(X_train,y_train)`
+> 3.训练：`laModel = model.fit(features, label)`
 
-> 4.预测：`print(ridge.coef_)` ，`print(ridge.intercept_)` 
+> 4.预测：`laModel.predict(x_test)` 
 
 <h3>参数说明</h3>
 
@@ -45,15 +45,17 @@
 
 > normalize:在需要计算截距时，如果值为True，则变量x在进行回归之前先进行归一化,如果需要进行标准化则normalize=False。若不计算截距，则忽略此参数
 
-> copy_X:默认为True，将复制X；否则，X可能在计算中被覆盖。
+> precompute :默认为True，将复制X；否则，X可能在计算中被覆盖。
 
 > max_iter:共轭梯度求解器的最大迭代次数。对于sparse_cg和lsqr,默认值由scipy.sparse.linalg确定。对于sag求解器，默认值为1000。
 
 > tol:float类型，指定计算精度
 
-> solver：求解器,可选值：{auto,svd,cholesky,lsqr,sparse_cg,sag,saga}
+> warm_start ：bool, 热启动,可选为 True 时, 重复使用上一次学习作为初始化，否则直接清除上次方案。
 
-> random_state:随机数生成器的种子。
+> positive:bool, 强制正相关,可选 设为 True 时，强制使系数为正。
+
+> selection:str, 选择器,默认 ‘cyclic’若设为 ‘random’, 每次循环会随机更新参数
 
 <h3>适用场景</h3>
 
