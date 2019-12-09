@@ -21,17 +21,18 @@ k 的选择一般是按照实际需求进行决定，或在实现算法时直�
 2.距离的度量 
 
 距离的度量方法主要分为以下几种：
-*  闵可夫斯基距离(Minkowski distance)：
 
-![image](/uploads/d618baa5b3766e465cf9227af1aecbf7/image.png)
+　　　　*  a.闵可夫斯基距离(Minkowski distance)：
 
-*  欧氏距离(Euclidean distance)，即当 p=2 时的闵可夫斯基距离:
+　　　　![image](/uploads/d618baa5b3766e465cf9227af1aecbf7/image.png)
 
-![image](/uploads/7eda6b0012384d7c6b5543cb5cc2b208/image.png)
+　　　　*  b.欧氏距离(Euclidean distance)，即当 p=2 时的闵可夫斯基距离:
 
-*  c.曼哈顿距离(Manhattan distance)，即当 p=1 时的闵可夫斯基距离:
+　　　　![image](/uploads/7eda6b0012384d7c6b5543cb5cc2b208/image.png)
 
-![image](/uploads/5abe462995bfaead2d96d56d54854e0d/image.png)
+　　　　*  c.曼哈顿距离(Manhattan distance)，即当 p=1 时的闵可夫斯基距离:
+
+　　　　![image](/uploads/5abe462995bfaead2d96d56d54854e0d/image.png)
 
 3.更新簇中心
 
