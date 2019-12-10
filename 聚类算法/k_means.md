@@ -74,7 +74,7 @@
 
 > 输出：簇划分 C=C1,C2,...,CK
 
-<h3>简单示例</h3>
+<h3>python/pyspark样例代码</h3>
 
 > 1.导入：`from sklearn.cluster import KMeans`;
 
