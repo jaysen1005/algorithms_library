@@ -125,16 +125,16 @@ CART建模方法在数据统计方面具有很好的灵活性，因此它在医�
 
 ##### **python/pyspark**样例代码
 
-`from sklearn import tree`
-
-`X =``[``[0, 0], [1, 1]``]`
-
-`Y = [0, 1]`
-
-`clf = tree.DecisionTreeClassifier()`
-
-`clf = clf.fit(X, Y)`
-
-`clf.predict([``[2., 2.]``])`
-
-`tree.plot_tree(clf)`
+`from sklearn import tree
+X = [``[0, 0], [1, 1]``]
+Y = [0, 1]
+criterion = "gini"
+splitter = "best"
+max_depth = None
+min_samples_split = 2
+min_samples_leaf  = 1
+min_weight_fraction_leaf = 0
+cart= tree.DecisionTreeClassifier(criterion=criterion], splitter=splitter, max_depth = max_depth , min_samples_split = min_samples_split ,min_samples_leaf = min_samples_leaf ,min_weight_fraction_leaf = min_weight_fraction_leaf)
+clf = cart.fit(X, Y)
+clf.predict([``[2., 2.]``])
+tree.plot_tree(clf)`
