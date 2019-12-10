@@ -58,7 +58,7 @@
 
 > 而我们的优化问题得到闭式解为：![image](/uploads/148c6e1a59bb498895b92899e2879d5b/image.png)其中，![image](/uploads/5d1f94da221a46491e7328c17ee96f92/image.png)与![image](/uploads/3dc80b2e22ba174bb2fd2f06633faccc/image.png)分别是![image](/uploads/97db0ab387a192a57c1d39061bbe8865/image.png)与z的第一i个分量。因此，通过PGD能使LASSO和其他基于L1范数最小化的方法得以快速求解。
 
-<h3>简单示例</h3>
+<h3>python/pyspark样例代码</h3>
 
 > 1.导入：`from sklearn.linear_model import Lasso`;
 
