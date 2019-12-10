@@ -30,7 +30,7 @@
 
 > （4）将输入空间划分为M个区域R1,R2,...,RM,生成决策树：![image](/uploads/4576f9bd1c6bc57c0fe693912aed6b39/image.png)
 
-<h3>简单示例</h3>
+<h3>python/pyspark样例代码</h3>
 
 > 1.导入：`from sklearn.tree import DecisionTreeRegressor`;
 
