@@ -89,7 +89,7 @@ max_depth = None
 min_samples_split = 2
 min_samples_leaf  = 1
 min_weight_fraction_leaf = 0
-id3 = tree.DecisionTreeClassifier(criterion=criterion], splitter=splitter, max_depth = max_depth , min_samples_split = min_samples_split ,min_samples_leaf = min_samples_leaf ,min_weight_fraction_leaf = min_weight_fraction_leaf)
+id3 = tree.DecisionTreeClassifier(criterion="entropy", splitter="best", max_depth = None, min_samples_split = 2,min_samples_leaf = 1,min_weight_fraction_leaf = 0)
 clf = id3.fit(X, Y)
 clf.predict([``[2., 2.]``])
 tree.plot_tree(clf)`
