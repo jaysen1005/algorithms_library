@@ -98,15 +98,9 @@ K值选的太大易引起欠拟合，太小容易过拟合。交叉验证确定K
 ##### **python/pyspark**样例代码
 
 `from sklearn.neighbors import KNeighborsClassifier
-
 X = [``[0], [1], [2], [3]``]
-
 y = [0, 0, 1, 1]
-
 neigh = KNeighborsClassifier(n_neighbors=3,algorithm=auto,weights="uniform",leaf_size=30)
-
 neigh.fit(X, y)
-
 neigh.predict([``[1.1]``])
-
 neigh.predict_proba([``[0.9]``])`
