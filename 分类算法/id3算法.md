@@ -83,12 +83,6 @@ ID3算法的核心是在决策树各个结点上应用信息增益准则选择�
 `from sklearn import tree
 X = [``[0, 0], [1, 1]``]
 Y = [0, 1]
-criterion = "entropy"
-splitter = "best"
-max_depth = None
-min_samples_split = 2
-min_samples_leaf  = 1
-min_weight_fraction_leaf = 0
 id3 = tree.DecisionTreeClassifier(criterion="entropy", splitter="best", max_depth = None, min_samples_split = 2,min_samples_leaf = 1,min_weight_fraction_leaf = 0)
 clf = id3.fit(X, Y)
 clf.predict([``[2., 2.]``])
